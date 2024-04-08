@@ -6,6 +6,9 @@ library(base)
 library(foreign)
 library(dplyr)
 
+#Preprocessing processes, such as bootstrap sampling for selecting subsamples, were done before this R script.
+#R version 4.2.1 was used. “grf”, version 2.3.2. was used.
+
 ## define folder
 setwd("YOUR FOLDER")
 
@@ -16,9 +19,11 @@ for (i in 1:1000){
   # test_*: test data to use predict indivudual effect
   # train_*: train data to build model
   # predic_*: export file of individual effect
+  # clate_*: export file of conditional local average treatment effect
   file.test <- sprintf("cf/test_%04d.csv", i) 
   file.train <- sprintf("cf/train_%04d.csv", i)
   file.predic <- sprintf("cf/predic_%04d.dta", i)
+  file.clate <- sprintf("cf/clate_%04d.dta", i)
   # import csv file
   df_test <- read.csv(file.test)
   df_train <- read.csv(file.train)
@@ -38,8 +43,12 @@ for (i in 1:1000){
   # define instrumental variable
   Z <- df_train$win  
   
+  # set seed
+  seed <- n
+  set.seed(seed)
+  
   # build instrumental forest model
-  tau_forest <- instrumental_forest(X, Y, W, Z, seed = n, num.trees = 10000, mtry = ncol(X)/3, min.node.size = 5)
+  tau_forest <- instrumental_forest(X, Y, W, Z, seed = seed, num.trees = 10000, mtry = ncol(X)/3, min.node.size = 5)
   
   # Test
   # define control variables
@@ -48,6 +57,10 @@ for (i in 1:1000){
   # apply model to test sample
   tau_hat <- predict(tau_forest, X_test, estimate.variance=TRUE)
   
+    # Estimate conditional local average treatment effect.
+  clate <- as.data.frame(average_treatment_effect(tau_forest, target.sample = "all"))
+  
   # export individual treatment effects
   write.dta(tau_hat, file.predic)
+  write.dta(clate, file.clate)
 }
