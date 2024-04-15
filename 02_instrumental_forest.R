@@ -7,7 +7,7 @@ library(foreign)
 library(dplyr)
 
 #Preprocessing processes, such as bootstrap sampling for selecting subsamples, were done before this R script.
-#R version 4.2.1 was used. “grf”, version 2.3.2. was used.
+#R version 4.3.1 was used. “grf”, version 2.3.2. was used.
 
 ## define folder
 setwd("YOUR FOLDER")
