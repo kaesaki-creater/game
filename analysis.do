@@ -603,8 +603,8 @@
 							local pvaltemp = (2 * ttail(e(df_r), abs(_b[`endogenous'] / _se[`endogenous']) ) )
 							local pval = round(`pvaltemp',.000001)
 							local stars = cond(`pval'<0.01,"***",cond(`pval'<0.05,"**",cond(`pval'<0.1,"*","empty")))
-							local low = `standcoef' - 1.96*`standse'
-							local hi = `standcoef' + 1.96*`standse'					
+							local low = `standcoef' - 2.01*`standse'
+							local hi = `standcoef' + 2.01*`standse'					
 					outreg2 using "$work`save'.xls", dec(3) fmt(gc) addtext(Controls, No, Prefecture FE, Yes, Mean, "`mean'", SD, "`sd'", Coef, "`coef'", SE, "`se'", Standardized Coef, "`standcoef'", Standardized SE, "`standse'", "P-value", "`pval'", Stars, `stars', Low, `low', Hi, `hi', Lottery, Switch) adds("Kleibergen-Paap rk Wald F statistic", e(widstat)) keep(`endogenous') nor2 nocon label nonotes append		
 		
 			ivreghdfe `outcome' (`endogenous' = win) njoin_member guess_2 guess_3 guess_4 guess_5 age gender $job $marital2 $jobind if lottery == 1 & inrange(round,1,1), absorb(pref round) cluster(pref) first
@@ -623,8 +623,8 @@
 							local pvaltemp = (2 * ttail(e(df_r), abs(_b[`endogenous'] / _se[`endogenous']) ) )
 							local pval = round(`pvaltemp',.000001)
 							local stars = cond(`pval'<0.01,"***",cond(`pval'<0.05,"**",cond(`pval'<0.1,"*","empty")))
-							local low = `standcoef' - 1.96*`standse'
-							local hi = `standcoef' + 1.96*`standse'					
+							local low = `standcoef' - 2.01*`standse'
+							local hi = `standcoef' + 2.01*`standse'					
 					outreg2 using "$work`save'.xls", dec(3) fmt(gc) addtext(Controls, Yes, Prefecture FE, Yes, Mean, "`mean'", SD, "`sd'", Coef, "`coef'", SE, "`se'", Standardized Coef, "`standcoef'", Standardized SE, "`standse'", "P-value", "`pval'", Stars, `stars', Low, `low', Hi, `hi', Lottery, Switch) adds("Kleibergen-Paap rk Wald F statistic", e(widstat)) keep(`endogenous') nor2 nocon label nonotes append			
 		}
 		}
@@ -651,8 +651,8 @@
 							local pvaltemp = (2 * ttail(e(df_r), abs(_b[`endogenous'] / _se[`endogenous']) ) )
 							local pval = round(`pvaltemp',.000001)
 							local stars = cond(`pval'<0.01,"***",cond(`pval'<0.05,"**",cond(`pval'<0.1,"*","empty")))
-							local low = `standcoef' - 1.96*`standse'
-							local hi = `standcoef' + 1.96*`standse'	
+							local low = `standcoef' - 2.01*`standse'
+							local hi = `standcoef' + 2.01*`standse'	
 					outreg2 using "$work`save'.xls", dec(3) fmt(gc) addtext(Controls, Yes, Prefecture FE, Yes, Mean, "`mean'", SD, "`sd'", Coef, "`coef'", SE, "`se'", Standardized Coef, "`standcoef'", Standardized SE, "`standse'", "P-value", "`pval'", Stars, `stars', Low, `low', Hi, `hi', Lottery, PS5) adds("Kleibergen-Paap rk Wald F statistic", e(widstat)) keep(`endogenous') nor2 nocon label nonotes append			
 		
 			ivreghdfe `outcome' (`endogenous' = win) njoin_member guess_2 guess_3 guess_4 guess_5 age gender $job $marital2 $jobind if lottery == 1 & inrange(round,2,5), absorb(pref round) cluster(pref) first
@@ -671,8 +671,8 @@
 							local pvaltemp = (2 * ttail(e(df_r), abs(_b[`endogenous'] / _se[`endogenous']) ) )
 							local pval = round(`pvaltemp',.000001)
 							local stars = cond(`pval'<0.01,"***",cond(`pval'<0.05,"**",cond(`pval'<0.1,"*","empty")))
-							local low = `standcoef' - 1.96*`standse'
-							local hi = `standcoef' + 1.96*`standse'	
+							local low = `standcoef' - 2.01*`standse'
+							local hi = `standcoef' + 2.01*`standse'	
 					outreg2 using "$work`save'.xls", dec(3) fmt(gc) addtext(Controls, Yes, Prefecture FE, Yes, Mean, "`mean'", SD, "`sd'", Coef, "`coef'", SE, "`se'", Standardized Coef, "`standcoef'", Standardized SE, "`standse'", "P-value", "`pval'", Stars, `stars', Low, `low', Hi, `hi', Lottery, PS5) adds("Kleibergen-Paap rk Wald F statistic", e(widstat)) keep(`endogenous') nor2 nocon label nonotes append			
 		}
 		}
